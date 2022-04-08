@@ -22,9 +22,9 @@ import (
 	"github.com/golang/protobuf/proto"
 	"github.com/pkg/errors"
 
-	"github.com/xuperchain/xuper-sdk-go/v2/account"
-	"github.com/xuperchain/xuper-sdk-go/v2/common"
-	"github.com/xuperchain/xuper-sdk-go/v2/common/config"
+	"github.com/superconsensus/matrix-sdk-go/v2/account"
+	"github.com/superconsensus/matrix-sdk-go/v2/common"
+	"github.com/superconsensus/matrix-sdk-go/v2/common/config"
 	"github.com/xuperchain/xuperchain/service/pb"
 
 	"google.golang.org/grpc"

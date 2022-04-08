@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xuperchain/xuper-sdk-go/v2/account"
-	"github.com/xuperchain/xuper-sdk-go/v2/common/config"
+	"github.com/superconsensus/matrix-sdk-go/v2/account"
+	"github.com/superconsensus/matrix-sdk-go/v2/common/config"
 	"github.com/xuperchain/xuperchain/service/pb"
 )
 

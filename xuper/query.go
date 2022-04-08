@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/xuperchain/xuper-sdk-go/v2/common"
+	"github.com/superconsensus/matrix-sdk-go/v2/common"
 	"github.com/xuperchain/xuperchain/service/pb"
 )
 

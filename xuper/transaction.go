@@ -4,9 +4,9 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/xuperchain/xuper-sdk-go/v2/account"
-	"github.com/xuperchain/xuper-sdk-go/v2/common"
-	"github.com/xuperchain/xuper-sdk-go/v2/crypto"
+	"github.com/superconsensus/matrix-sdk-go/v2/account"
+	"github.com/superconsensus/matrix-sdk-go/v2/common"
+	"github.com/superconsensus/matrix-sdk-go/v2/crypto"
 
 	"github.com/xuperchain/xuperchain/service/pb"
 )

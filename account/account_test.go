@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/xuperchain/xuper-sdk-go/v2/common"
+	"github.com/superconsensus/matrix-sdk-go/v2/common"
 )
 
 func TestCreateAccount(t *testing.T) {

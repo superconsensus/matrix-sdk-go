@@ -3,7 +3,7 @@ package xuper
 import (
 	"testing"
 
-	"github.com/xuperchain/xuper-sdk-go/v2/account"
+	"github.com/superconsensus/matrix-sdk-go/v2/account"
 	"github.com/xuperchain/xuperchain/service/pb"
 )
 

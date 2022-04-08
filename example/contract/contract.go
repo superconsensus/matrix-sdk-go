@@ -5,8 +5,8 @@ import (
 	"io/ioutil"
 	"time"
 
-	"github.com/xuperchain/xuper-sdk-go/v2/account"
-	"github.com/xuperchain/xuper-sdk-go/v2/xuper"
+	"github.com/superconsensus/matrix-sdk-go/v2/account"
+	"github.com/superconsensus/matrix-sdk-go/v2/xuper"
 )
 
 func main() {

@@ -2,7 +2,7 @@
 # xuper-sdk-go XuperChain Client SDK for Go
 This SDK enables Go developers to build solutions that interact with open chain network of XuperChain.
 
-[![GoDoc](https://pkg.go.dev/badge/github.com/xuperchain/xuper-sdk-go?utm_source=godoc)](https://pkg.go.dev/github.com/xuperchain/xuper-sdk-go/v2)
+[![GoDoc](https://pkg.go.dev/badge/github.com/xuperchain/xuper-sdk-go?utm_source=godoc)](https://pkg.go.dev/github.com/superconsensus/matrix-sdk-go/v2)
 [![Go Report Card](https://goreportcard.com/badge/github.com/xuperchain/xuper-sdk-go)](https://goreportcard.com/report/github.com/xuperchain/xuper-sdk-go)
 [![License](https://img.shields.io/github/license/xuperchain/xuper-sdk-go?style=flat-square)](/LICENSE)
 
@@ -30,7 +30,7 @@ make
 
 Use go get xuper-sdk-go
 ```bash
-go get github.com/xuperchain/xuper-sdk-go/v2
+go get github.com/superconsensus/matrix-sdk-go/v2
 ```
 
 ## example
@@ -76,7 +76,7 @@ make
 
 使用 go get 安装 xuper-sdk-go
 ```bash
-go get github.com/xuperchain/xuper-sdk-go/v2
+go get github.com/superconsensus/matrix-sdk-go/v2
 ```
 
 ## 示例

@@ -4,10 +4,10 @@
 package crypto
 
 import (
+	"github.com/superconsensus/matrix-sdk-go/v2/common/config"
 	"github.com/xuperchain/crypto/client/service/base"
 	"github.com/xuperchain/crypto/client/service/gm"
 	"github.com/xuperchain/crypto/client/service/xchain"
-	"github.com/xuperchain/xuper-sdk-go/v2/common/config"
 )
 
 func getInstance() interface{} {
