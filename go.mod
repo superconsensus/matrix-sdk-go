@@ -7,6 +7,7 @@ require (
 	github.com/golang/protobuf v1.4.2
 	github.com/hyperledger/burrow v0.30.5
 	github.com/pkg/errors v0.9.1
+	github.com/valyala/fasthttp v1.35.0
 	github.com/xuperchain/crypto v0.0.0-20211221122406-302ac826ac90
 	github.com/xuperchain/xuperchain v0.0.0-20210708031936-951e4ade7bdd
 	google.golang.org/grpc v1.33.1
