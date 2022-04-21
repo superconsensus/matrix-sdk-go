@@ -5,6 +5,7 @@ import (
 	"github.com/superconsensus/matrix-sdk-go/v2/common"
 	"log"
 	"regexp"
+	"strconv"
 )
 
 type AccountSgx struct {
@@ -38,19 +39,29 @@ func CreateAccountSgx(url string) (*AccountSgx, error) {
 }
 
 // 恢复账号
-func ReAccountSgx(url, addr string) (*AccountSgx, error) {
+func RetrieveAccountSgx(url, addr string) (*AccountSgx, error) {
 	if url == "" || addr == "" {
 		return nil, fmt.Errorf("%s", "nil url or addr")
 	}
 	// 创建api client
 	apiclient := NewApiClientXuperchain(url)
-	// todo 检查sgx中是否有 addr
-
-	accountsgx := &AccountSgx{
-		Address: addr,
-		APISgx:  apiclient,
+	// 检查sgx中是否有 addr
+	isExistArgs := map[string]interface{}{
+		"address": addr,
 	}
-	return accountsgx, nil
+	result, err := apiclient.IsExist(IsExistMethod, isExistArgs)
+	if err != nil {
+		return nil, err
+	}
+	flag, _ := strconv.ParseBool(string(result.Data))
+	if flag {
+		accountsgx := &AccountSgx{
+			Address: addr,
+			APISgx:  apiclient,
+		}
+		return accountsgx, nil
+	}
+	return nil, fmt.Errorf("RetrieveAccountSgx error")
 }
 
 // SetContractAccount set contract account.

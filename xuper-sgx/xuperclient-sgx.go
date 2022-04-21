@@ -1,12 +1,20 @@
 package xuper_sgx
 
 import (
+	"context"
+	"github.com/golang/protobuf/proto"
 	account_sgx "github.com/superconsensus/matrix-sdk-go/v2/account-sgx"
 	"github.com/superconsensus/matrix-sdk-go/v2/common"
 	"github.com/xuperchain/xuperchain/service/pb"
+	"io"
+	"log"
 	"math/big"
 	"regexp"
 )
+
+/////////////////////////////////////////
+//		app <-------> sdk
+/////////////////////////////////////////
 
 // DeployNativeGoContract deploy native go contract.
 //
@@ -264,76 +272,76 @@ func (x *XClient) SetMethodACL(from *account_sgx.AccountSgx, name, method string
 }
 
 // WatchBlockEvent new watcher for block event.
-//func (x *XClient) WatchBlockEvent(opts ...BlockEventOption) (*Watcher, error) {
-//	watcher, err := x.newWatcher(opts...)
-//	if err != nil {
-//		return nil, err
-//	}
-//	buf, _ := proto.Marshal(watcher.opt.blockFilter)
-//	request := &pb.SubscribeRequest{
-//		Type:   pb.SubscribeType_BLOCK,
-//		Filter: buf,
-//	}
-//
-//	stream, err := x.esc.Subscribe(context.TODO(), request)
-//	if err != nil {
-//		return nil, err
-//	}
-//
-//	filteredBlockChan := make(chan *FilteredBlock, watcher.opt.blockChanBufferSize)
-//	exit := make(chan struct{})
-//	watcher.exit = exit
-//	watcher.FilteredBlockChan = filteredBlockChan
-//
-//	go func() {
-//		defer func() {
-//			close(filteredBlockChan)
-//			if err := stream.CloseSend(); err != nil {
-//				log.Printf("Unregister block event failed, close stream error: %v", err)
-//			} else {
-//				log.Printf("Unregister block event success...")
-//			}
-//		}()
-//		for {
-//			select {
-//			case <-exit:
-//				return
-//			default:
-//				event, err := stream.Recv()
-//				if err == io.EOF {
-//					return
-//				}
-//				if err != nil {
-//					log.Printf("Get block event err: %v", err)
-//					return
-//				}
-//				var block pb.FilteredBlock
-//				err = proto.Unmarshal(event.Payload, &block)
-//				if err != nil {
-//					log.Printf("Get block event err: %v", err)
-//					return
-//				}
-//				if len(block.GetTxs()) == 0 && watcher.opt.skipEmptyTx {
-//					continue
-//				}
-//				filteredBlockChan <- fromFilteredBlockPB(&block)
-//			}
-//		}
-//	}()
-//	return watcher, nil
-//}
-//
-//func (x *XClient) newWatcher(opts ...BlockEventOption) (*Watcher, error) {
-//	opt, err := initEventOpts(opts...)
-//	if err != nil {
-//		return nil, err
-//	}
-//
-//	watcher := &Watcher{
-//		opt: opt,
-//	}
-//	return watcher, nil
-//}
+func (x *XClient) WatchBlockEvent(opts ...BlockEventOption) (*Watcher, error) {
+	watcher, err := x.newWatcher(opts...)
+	if err != nil {
+		return nil, err
+	}
+	buf, _ := proto.Marshal(watcher.opt.blockFilter)
+	request := &pb.SubscribeRequest{
+		Type:   pb.SubscribeType_BLOCK,
+		Filter: buf,
+	}
+
+	stream, err := x.esc.Subscribe(context.TODO(), request)
+	if err != nil {
+		return nil, err
+	}
+
+	filteredBlockChan := make(chan *FilteredBlock, watcher.opt.blockChanBufferSize)
+	exit := make(chan struct{})
+	watcher.exit = exit
+	watcher.FilteredBlockChan = filteredBlockChan
+
+	go func() {
+		defer func() {
+			close(filteredBlockChan)
+			if err := stream.CloseSend(); err != nil {
+				log.Printf("Unregister block event failed, close stream error: %v", err)
+			} else {
+				log.Printf("Unregister block event success...")
+			}
+		}()
+		for {
+			select {
+			case <-exit:
+				return
+			default:
+				event, err := stream.Recv()
+				if err == io.EOF {
+					return
+				}
+				if err != nil {
+					log.Printf("Get block event err: %v", err)
+					return
+				}
+				var block pb.FilteredBlock
+				err = proto.Unmarshal(event.Payload, &block)
+				if err != nil {
+					log.Printf("Get block event err: %v", err)
+					return
+				}
+				if len(block.GetTxs()) == 0 && watcher.opt.skipEmptyTx {
+					continue
+				}
+				filteredBlockChan <- fromFilteredBlockPB(&block)
+			}
+		}
+	}()
+	return watcher, nil
+}
+
+func (x *XClient) newWatcher(opts ...BlockEventOption) (*Watcher, error) {
+	opt, err := initEventOpts(opts...)
+	if err != nil {
+		return nil, err
+	}
+
+	watcher := &Watcher{
+		opt: opt,
+	}
+	return watcher, nil
+}
 
 ////////////////////////////////////////////////
 //	         query

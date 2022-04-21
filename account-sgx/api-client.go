@@ -7,17 +7,17 @@ import (
 
 // test方便测试 (后期通过配置文件/填写参数形式)
 var (
-	// sgx服务地址
-	URL    = "http://127.0.0.1:8080"
-	Ping   = "/ping"
-	Create = "/create"
-	Sign   = "/sign"
-	Verify = "/verify"
+	Ping    = "/ping"
+	Create  = "/create"
+	Sign    = "/sign"
+	Verify  = "/verify"
+	IsExist = "/is-exist"
 
-	PingMethod   = "GET"
-	CreateMethod = "GET"
-	SignMethod   = "POST"
-	VerifyMethod = "POST"
+	PingMethod    = "GET"
+	CreateMethod  = "GET"
+	SignMethod    = "POST"
+	VerifyMethod  = "POST"
+	IsExistMethod = "POST"
 )
 
 // 响应结果
@@ -33,6 +33,7 @@ type ApiClient interface {
 	Create(method string, args map[string]interface{}) (*Response, error)
 	Sign(method string, args map[string]interface{}) (*Response, error)
 	Verify(method string, args map[string]interface{}) (*Response, error)
+	IsExist(method string, args map[string]interface{}) (*Response, error)
 }
 
 // 封装请求api服务的结构体
@@ -60,6 +61,9 @@ func (c *ApiClientXuperchain) Sign(method string, args map[string]interface{}) (
 
 func (c *ApiClientXuperchain) Verify(method string, args map[string]interface{}) (*Response, error) {
 	return request(c.URL+Verify, method, args)
+}
+func (c *ApiClientXuperchain) IsExist(method string, args map[string]interface{}) (*Response, error) {
+	return request(c.URL+IsExist, method, args)
 }
 
 // 请求服务封装

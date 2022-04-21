@@ -7,6 +7,8 @@ import (
 )
 
 var (
+	// sgx服务地址
+	URL  = "http://127.0.0.1:8080"
 	addr = "V6Avp9KqLfwGUaRFPV27a8VZhwxiYofoU"
 	msg  = []byte("123456")
 )
