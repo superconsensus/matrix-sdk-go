@@ -1,6 +1,6 @@
 # endorseService Info
 # testNet addrs
-endorseServiceHost: "39.156.69.83:37100"
+endorseServiceHost: "127.0.0.1:37100"
 complianceCheck:
   # 是否需要进行合规性背书
   isNeedComplianceCheck: false

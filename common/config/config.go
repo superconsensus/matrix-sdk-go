@@ -28,7 +28,7 @@ type CommConfig struct {
 	TxVersion          int32                 `yaml:"txVersion,omitempty"`
 }
 
-const confPath = "./conf"
+const confPath = "../../conf"
 const confName = "sdk.yaml"
 
 const CRYPTO_XCHAIN = "xchain"
